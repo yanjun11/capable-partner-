@@ -1,0 +1,157 @@
+{
+  "wizard": {
+    "lastRunAt": "2026-03-02T14:13:16.174Z",
+    "lastRunVersion": "2026.3.1",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "openai:default": {
+        "provider": "openai",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "newapi": {
+        "baseUrl": "https://newapi.deepwisdom.ai/v1",
+        "apiKey": "sk-hzwjX0HcaAKjPqvUpQiQ0W1vrfv8OlVpfg7dEvtqjW6GB7li",
+        "api": "openai-completions",
+	"models": [
+	  {
+	    "id": "gpt-4o-mini",
+            "name": "GPT-4o Mini",
+	    "reasoning": false,
+            "input": ["text"],
+	    "cost": {  
+              "input": 0.0015,
+              "output": 0.0006
+            },
+            "contextWindow": 128000, 
+            "maxTokens": 8192
+          }
+	]
+      }	
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "newapi/gpt-4o-mini"
+      },
+      "models": {
+        "openai/gpt-5.1-codex": {
+          "alias": "GPT"
+        }
+      },
+      "workspace": "/code/pyproject/capable-partner-/openclaw-workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_a92bf8820af91cb1",
+      "appSecret": "0yCujwlC54qvGMoWyOkR3dDjtaMsjxil",
+      "domain": "feishu",
+      "groupPolicy": "allowlist",
+      "groupAllowFrom": [
+        "oc_7725c177ac3fec7500c47047036a1b3e"
+      ],
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+	"ou_662c0cc4a21c19377dc7866aa3d98a84"
+      ]	
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "abb5258296d496ea1f9a25ba45b49a9ea75ce40d6b7a38e2"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "feishu": {
+        "source": "npm",
+        "spec": "@openclaw/feishu",
+        "installPath": "/root/.openclaw/extensions/feishu",
+        "version": "2026.3.1",
+        "resolvedName": "@openclaw/feishu",
+        "resolvedVersion": "2026.3.1",
+        "resolvedSpec": "@openclaw/feishu@2026.3.1",
+        "integrity": "sha512-zEO9V/ZN83p1o6jjCy652VEbpNYcDd5vrtRvuwRMfEYPE6oXhfog60ZegTQKCb6go4bbvwTgKyK0c4Cc7pQ5vQ==",
+        "shasum": "2ef7b14f777ae181be0a345f11eabe4618a83108",
+        "resolvedAt": "2026-03-02T14:12:26.115Z",
+        "installedAt": "2026-03-02T14:12:30.463Z"
+      }
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.3.1",
+    "lastTouchedAt": "2026-03-02T14:13:16.213Z"
+  },
+  {
+  "skills": {
+    "feishu-group-welcome": {
+      "enabled": true,
+      "config": {
+        "max_mentions_per_msg": 39,
+        "cooldown_minutes": 10,
+        "assistant_name": "Lucas",
+        "welcome_templates": [
+          "欢迎 {mentions} 加入DeepWisdom大家庭！🦞 我是群助手{assistant_name}～",
+          "新朋友 {mentions} 大家好！请来个酷炫的自我介绍吧～"
+        ]
+      }
+    }
+  },
+  "feishu": {
+    "event_subscriptions": {
+      "im.chat.member.user.added_v1": true
+    }
+  }
+}
+}
